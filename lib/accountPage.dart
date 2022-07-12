@@ -2,8 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:inspired_finalproject/login.dart';
+import 'package:inspired_finalproject/quotegenerator.dart';
 import 'main.dart';
-import 'forgot.dart';
+import 'blackinfo.dart';
 import 'homepage.dart';
 
 // ignore_for_file: prefer_const_constructors
@@ -51,7 +52,12 @@ class Account extends StatelessWidget {
             IconButton(
               tooltip: 'Quote Generator',
                icon: const Icon(Icons.stay_primary_portrait, size: 40.0,),
-               onPressed: () {},
+               onPressed: () {
+                 Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Quote())
+                );
+               },
             ),
             IconButton(
               tooltip: 'Account',
@@ -66,7 +72,12 @@ class Account extends StatelessWidget {
             IconButton(
               tooltip: 'Black Figures',
                icon: const Icon(Icons.people, size: 40.0,),
-               onPressed: () {},
+               onPressed: () {
+                 Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Gallery())
+                 );
+               },
             ),
           ],
         ),
@@ -98,11 +109,10 @@ class AccountForm extends StatelessWidget {
                     width: 2,
                   ),
                 ),
-                  child: IconButton(
-              tooltip: 'Black Figures',
-               icon: const Icon(Icons.exit_to_app_rounded, size: 40.0,),
-               onPressed: () {},
-            ),
+                  child: Icon (
+                    Icons.exit_to_app_rounded,
+                    size: 65.0,
+                ),
                 constraints: BoxConstraints.tightFor(
                   width: 86.0,
                   height: 86.0,

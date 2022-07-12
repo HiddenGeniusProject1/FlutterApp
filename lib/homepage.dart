@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:inspired_finalproject/screens/chatscreen.dart';
 import 'accountPage.dart';
 import 'blackinfo.dart';
+import 'mainchat.dart';
+import 'quotegenerator.dart';
 
 // ignore_for_file: prefer_const_constructors
 
@@ -53,59 +56,67 @@ class _MyHomePageState extends State<MyHomePage> {
        ),
       ),
       
-      body: Column(
-        children:<Widget> [
-          Column(
-            children: <Widget> [
-              Container(
-                child: Align(
-                  alignment: Alignment.topRight,
-                child: RawMaterialButton(
-                  child: const Icon (
-                    Icons.messenger_outline_rounded,
-                    size: 46.0,
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children:<Widget> [
+            Column(
+              children: <Widget> [
+                Container(
+                  child: Align(
+                    alignment: Alignment.topRight,
+                  child: RawMaterialButton(
+                    child: const Icon (
+                      Icons.messenger_outline_rounded,
+                      size: 46.0,
+                  ),
+                  elevation: 0.0,
+                    onPressed: () {
+                      Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ChatApp())
+                  );
+                    },
+                  constraints: BoxConstraints.tightFor(
+                    width: 60.0,
+                    height: 60.0,
+                  ),
+                  shape: CircleBorder(),
+                  fillColor: Color(0xFFC35454),
+                  ),
                 ),
-                elevation: 0.0,
-                  onPressed: () {},
-                constraints: BoxConstraints.tightFor(
-                  width: 60.0,
-                  height: 60.0,
                 ),
-                shape: CircleBorder(),
-                fillColor: Color(0xFFC35454),
+              ],
+            ),
+            Align(
+              alignment: Alignment.topCenter,
+                child: Image.asset(
+                  'lib/images/malcolmX.png', 
+                  height: 390.0,
                 ),
               ),
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(
+                Radius.circular(12.0),
               ),
-            ],
-          ),
-          Align(
-            alignment: Alignment.topCenter,
-              child: Image.asset(
-                'lib/images/malcolmX.png', 
-                height: 390.0,
+              color: Color(0xFFC35454),
               ),
-            ),
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(
-              Radius.circular(12.0),
-            ),
-            color: Color(0xFFC35454),
-            ),
-            width: 385.0,
-            height: 110,
-            child: Text(
-              '“A man who stands for nothing will fall for anything.” - Malcolm X', 
-              textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 26.5,
-              fontFamily: 'Playfair Display',
+              width: 385.0,
+              height: 110,
+              child: Text(
+                '“A man who stands for nothing will fall for anything.” - Malcolm X', 
+                textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 26.5,
+                fontFamily: 'Playfair Display',
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
       bottomNavigationBar: BottomAppBar(
         child: Row(
@@ -124,7 +135,12 @@ class _MyHomePageState extends State<MyHomePage> {
             IconButton(
               tooltip: 'Quote Generator',
                icon: const Icon(Icons.stay_primary_portrait, size: 40.0,),
-               onPressed: () {},
+               onPressed: () {
+                 Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Quote())
+                );
+               },
             ),
             IconButton(
               tooltip: 'Account',

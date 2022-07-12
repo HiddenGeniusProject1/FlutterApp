@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'main.dart';
+import 'homepage.dart';
 
 // ignore_for_file: prefer_const_constructors
 
@@ -132,7 +133,7 @@ class SignUpForm extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => MyApp())
+                    MaterialPageRoute(builder: (context) => Home())
                     );
                 },
               ),

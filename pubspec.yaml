@@ -9,6 +9,7 @@ environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
+  firebase_messaging: ^11.2.7
   flutter:
     sdk: flutter
 
@@ -24,13 +25,8 @@ flutter:
   uses-material-design: true
 
   assets:
-    - lib/images/africaCont.png
-    - lib/images/malcolmX.png
-    - lib/images/kobe.png
-    - lib/images/obama-gq-1215-05.webp
-    - lib/images/Denzel_Sidney_GettyImages-613488462_1280.webp
-    - lib/images/gettyimages-152247360.jpeg
-    - lib/images/tennis.jpeg
+    - lib/images/
+
 
   fonts:
   - family: Finlandica
@@ -39,3 +35,6 @@ flutter:
   - family: Playfair Display
     fonts:
     - asset: lib/fonts/PlayfairDisplay-VariableFont_wght.ttf
+  - family: Ibarra Real Nova
+    fonts:
+    - asset: lib/fonts/IbarraRealNova-VariableFont_wght.ttf
