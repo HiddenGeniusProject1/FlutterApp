@@ -85,6 +85,8 @@ class SignUpForm extends StatelessWidget {
             ),
           ),
         ),
+        //test
+        
         Column(
             children: <Widget> [
             Center(
