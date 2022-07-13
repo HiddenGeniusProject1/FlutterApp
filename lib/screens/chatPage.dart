@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:inspired_finalproject/models/chatUsers.dart';
 import 'package:inspired_finalproject/screens/widgets/conversationList.dart';
+import 'package:inspired_finalproject/storyscreen.dart';
 
 
 class PageChat extends StatefulWidget {
@@ -42,6 +43,33 @@ class _ChatPageState extends State<PageChat> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
+              Container(
+                child: Padding(
+                  padding: const EdgeInsets.all(9.0),
+                  child: Align(
+                      alignment: Alignment.topLeft,
+                    child: RawMaterialButton(
+                      child: const Icon (
+                        Icons.apps_rounded,
+                        size: 40.0,
+                    ),
+                    elevation: 0.0,
+                      onPressed: () {
+                        Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomeScreen())
+                    );
+                      },
+                    constraints: BoxConstraints.tightFor(
+                      width: 50.0,
+                      height: 50.0,
+                    ),
+                    shape: CircleBorder(),
+                    fillColor: Color(0xFFC35454),
+                    ),
+                  ),
+                ),
+              ),
               SafeArea(
                 child: Padding(
                   padding: EdgeInsets.only(left: 16, right: 16, top: 10),

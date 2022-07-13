@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'main.dart';
@@ -43,108 +42,116 @@ class SignUpForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Text(
-            'New Password:',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 25.0,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Text(
+              'New Password:',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 25.0,
+              ),
             ),
           ),
-        ),
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16,),
-          child: TextField(
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              hintText: 'Enter New Password',
+          const Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: 8,
+              vertical: 16,
+            ),
+            child: TextField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: 'Enter New Password',
+              ),
             ),
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Text(
-            'Confirm Password:',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 25.0,
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Text(
+              'Confirm Password:',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 25.0,
+              ),
             ),
           ),
-        ),
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16,),
-          child: TextField(
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              hintText: 'Confirm New Password',
+          const Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: 8,
+              vertical: 16,
+            ),
+            child: TextField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: 'Confirm New Password',
+              ),
             ),
           ),
-        ),
-        //test
-        
-        Column(
-            children: <Widget> [
-            Center(
-              child: Padding(
-                padding: EdgeInsets.all(28.0),
-                child: FlatButton(
-                  height: 58.0,
-                  minWidth: 250.0,
-                color: Color(0xFFA11E1E),
-                child: Text(
-                  'Go Back',
-                  style: TextStyle(
-                    fontSize: 35.0,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white
+          //test
+
+          Column(
+            children: <Widget>[
+              Center(
+                child: Padding(
+                  padding: EdgeInsets.all(28.0),
+                  //  height: 58.0,
+                  //   minWidth: 250.0,
+                  child: TextButton(
+                    child: Container(
+                      height: 58.0,
+                      width: 250.0,
+                      child: Text(
+                        'Go Back',
+                        style: TextStyle(
+                          fontSize: 35.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    style: TextButton.styleFrom(
+                      primary: Color(
+                        0xFFA11E1E,
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Log()));
+                    },
                   ),
                 ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Log())
-                    );
-                },
               ),
+            ],
           ),
-            ),
-        ],
-      ),
-      
-      Column(
-            children: <Widget> [
-            Center(
-              child: Padding(
-                padding: EdgeInsets.all(25.0),
-                child: FlatButton(
-                  height: 58.0,
-                  minWidth: 250.0,
-                color: Color(0xFFA11E1E),
-                child: Text(
-                  'Enter',
-                  style: TextStyle(
-                    fontSize: 35.0,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white
+
+          Column(
+            children: <Widget>[
+              Center(
+                child: Padding(
+                  padding: EdgeInsets.all(25.0),
+                  child: FlatButton(
+                    height: 58.0,
+                    minWidth: 250.0,
+                    color: Color(0xFFA11E1E),
+                    child: Text(
+                      'Enter',
+                      style: TextStyle(
+                          fontSize: 35.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Log()));
+                    },
                   ),
                 ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Log())
-                    );
-                },
               ),
+            ],
           ),
-            ),
-        ],
-      ),
-      ]
-    );
+        ]);
   }
 }
