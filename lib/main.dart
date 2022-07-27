@@ -1,13 +1,43 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:inspired_finalproject/homepage.dart';
 import 'package:inspired_finalproject/login.dart';
+import 'package:inspired_finalproject/services/auth.dart';
 import 'signupPage.dart';
 import 'login.dart';
+import 'package:firebase_core/firebase_core.dart';
 // ignore_for_file: prefer_const_constructors
 
 
-void main() {
-  runApp(const MyApp());
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
+}
+
+class AuthWrapper extends StatefulWidget {
+  const AuthWrapper({Key? key}) : super(key: key);
+
+  @override
+  State<AuthWrapper> createState() => _AuthWrapperState();
+}
+
+class _AuthWrapperState extends State<AuthWrapper> {
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<User?>(
+      stream: FirebaseAuth.instance.authStateChanges(),
+      builder: ((context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        if (snapshot.hasData) {
+          return Home();
+        }
+        return LoginScrn(onClickedSignUp: null,);
+      })
+    );
+  }
 }
 
 

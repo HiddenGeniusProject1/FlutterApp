@@ -4,6 +4,7 @@ import 'package:inspired_finalproject/homepage.dart';
 import 'package:inspired_finalproject/blackinfo.dart';
 import 'package:inspired_finalproject/accountPage.dart';
 import 'package:inspired_finalproject/screens/chatPage.dart';
+import 'package:inspired_finalproject/quotegenerator.dart';
 
 class ChatPage extends StatelessWidget{
   @override
@@ -27,7 +28,12 @@ class ChatPage extends StatelessWidget{
             IconButton(
               tooltip: 'Quote Generator',
                icon: const Icon(Icons.stay_primary_portrait, size: 40.0,),
-               onPressed: () {},
+               onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Quote())
+                );
+               },
             ),
             IconButton(
               tooltip: 'Account',

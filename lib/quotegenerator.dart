@@ -1,6 +1,5 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'accountPage.dart';
 import 'blackinfo.dart';
 import 'homepage.dart';
@@ -80,36 +79,33 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(18.0),
-            child: Align(
-              alignment: Alignment.topCenter,
-              child: Expanded(
-                child: Builder(
-                builder: (context) => FlatButton(
-                  onPressed: (){
-                    var random = Random();
-                    Scaffold.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(
-                          quotes[random.nextInt(quotes.length)],
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontFamily: 'Ibarra Real Nova',
-                          ),
+          Align(
+            alignment: Alignment.topCenter,
+            child: Expanded(
+              child: Builder(
+              builder: (context) => FlatButton(
+                onPressed: (){
+                  var random = Random();
+                  Scaffold.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        quotes[random.nextInt(quotes.length)],
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontFamily: 'Ibarra Real Nova',
                         ),
                       ),
-                    );
-                  },
-                child: Image.asset(
-                  'lib/images/Fist.svg.png', 
-                  height: 300.0,
-                ),
-                )
+                    ),
+                  );
+                },
+              child: Image.asset(
+                'lib/images/Fist.svg.png', 
+                height: 300.0,
               ),
-            )
-              ),
-          ),
+              )
+            ),
+          )
+            ),
           Expanded(
           flex: 5,
           child: Padding(

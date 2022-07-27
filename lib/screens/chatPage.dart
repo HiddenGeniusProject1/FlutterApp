@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:inspired_finalproject/models/chatUsers.dart';
 import 'package:inspired_finalproject/screens/widgets/conversationList.dart';
@@ -11,16 +10,7 @@ class PageChat extends StatefulWidget {
 }
 
 class _ChatPageState extends State<PageChat> {
-  List<ChatUsers> chatUsers = [
-    ChatUsers(name: 'Justin Walton', messageText: 'Awesome!', imageURL: 'lib/images/Jwalt.jpeg', time: 'Yesterday'),
-    ChatUsers(name: 'Jordan Walton', messageText: 'Talk to you later, bro.', imageURL: 'lib/images/IMG_1377.jpg', time: '2 Days Ago'),
-    ChatUsers(name: 'Trevor Walton', messageText: 'That is cool.', imageURL: 'lib/images/IMG_0663.jpg', time: 'Now'),
-    ChatUsers(name: 'Ahmad Gabriel', messageText: 'Have a good weekend.', imageURL: 'lib/images/IMG_1385.jpg', time: 'June 20'),
-    ChatUsers(name: 'Erikah Sanders', messageText: 'See you later', imageURL: 'lib/images/IMG_1378.jpg', time: '5 Days Ago'),
-    ChatUsers(name: 'Kameron Bazille', messageText: 'Thanks', imageURL: 'lib/images/IMG_EA8613A1BA8B-1.jpeg', time: 'June 1'),
-    ChatUsers(name: 'Tremaine Moore', messageText: 'You saw Steph Curry tonight?', imageURL: 'lib/images/IMG_5E208B7ACD1D-1.jpeg', time: 'June 30th'),
-    ChatUsers(name: 'Sofia Toliver', messageText: 'I will be coming later.', imageURL: 'lib/images/IMG_8D0C2C62931C-1.jpeg', time: '3 Days Ago'),
-  ];
+  List<MyAppUser> chatUsers = [];
 
   
   
@@ -129,21 +119,21 @@ class _ChatPageState extends State<PageChat> {
                   ),
                 ),
               ),
-              ListView.builder(
-                itemCount: chatUsers.length,
-                shrinkWrap: true,
-                padding: EdgeInsets.only(top: 16),
-                physics: NeverScrollableScrollPhysics(),
-                itemBuilder: (context, index){
-                  return ConversationList(
-                    name: chatUsers[index].name,
-                    messageText: chatUsers[index].messageText,
-                    imageURL: chatUsers[index].imageURL,
-                    time: chatUsers[index].time,
-                    isMessageRead: (index == 0 || index == 3)? true:false,
-                  );
-                }
-                )
+              // ListView.builder(
+              //   itemCount: chatUsers.length,
+              //   shrinkWrap: true,
+              //   padding: EdgeInsets.only(top: 16),
+              //   physics: NeverScrollableScrollPhysics(),
+              //   itemBuilder: (context, index){
+              //     return ConversationList(
+              //       name: chatUsers[index].name,
+              //       messageText: chatUsers[index].messageText,
+              //       imageURL: chatUsers[index].imageURL,
+              //       time: chatUsers[index].time,
+              //       isMessageRead: (index == 0 || index == 3)? true:false,
+              //     );
+              //   }
+              //   )
             ],
           ),
         ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:inspired_finalproject/homepage.dart';
 import 'accountPage.dart';
 import 'quotegenerator.dart';

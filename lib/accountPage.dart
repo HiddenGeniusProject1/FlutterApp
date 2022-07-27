@@ -1,6 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:inspired_finalproject/login.dart';
 import 'package:inspired_finalproject/quotegenerator.dart';
 import 'main.dart';

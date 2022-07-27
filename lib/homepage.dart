@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:inspired_finalproject/screens/chatscreen.dart';
 import 'accountPage.dart';
 import 'blackinfo.dart';
 import 'mainchat.dart';
