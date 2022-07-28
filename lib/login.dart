@@ -189,10 +189,7 @@ class _LoginScrnState extends State<LoginScrn> {
                           });
                         }
                       }
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Home())
-                        );
+                     
                     },
                   ),
               ),

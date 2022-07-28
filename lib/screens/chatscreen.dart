@@ -31,7 +31,7 @@ class ChatPage extends StatelessWidget{
                onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Quote())
+                  MaterialPageRoute(builder: (context) => Quote(title: 'Quote Generator',))
                 );
                },
             ),
@@ -51,7 +51,7 @@ class ChatPage extends StatelessWidget{
                onPressed: () {
                  Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Gallery())
+                  MaterialPageRoute(builder: (context) => Black(title: 'Black History',))
                 );
                },
             ),

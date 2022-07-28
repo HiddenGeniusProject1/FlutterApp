@@ -9,7 +9,7 @@ import 'homepage.dart';
 
 // ignore_for_file: prefer_const_constructors
 
-void main() => runApp(const Account());
+
 
 class Account extends StatelessWidget {
   const Account({key});
@@ -55,7 +55,7 @@ class Account extends StatelessWidget {
                onPressed: () {
                  Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Quote())
+                  MaterialPageRoute(builder: (context) => Quote(title: 'Quote Generator',))
                 );
                },
             ),
@@ -75,7 +75,7 @@ class Account extends StatelessWidget {
                onPressed: () {
                  Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Gallery())
+                  MaterialPageRoute(builder: (context) => Black(title: 'Black History',))
                  );
                },
             ),

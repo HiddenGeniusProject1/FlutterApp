@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inspired_finalproject/screens/chatPage.dart';
 import 'accountPage.dart';
 import 'blackinfo.dart';
 import 'mainchat.dart';
@@ -7,24 +8,17 @@ import 'quotegenerator.dart';
 // ignore_for_file: prefer_const_constructors
 
 
-void main() {
-  runApp(const Home());
-}
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Be Inspired',
-      theme: ThemeData(
-        scaffoldBackgroundColor: Color(0xFFA11E1E),
-      ),
-      home: const MyHomePage(
+    return 
+     const MyHomePage(
         title: 'Be Inspired',
-        ),
-    );
+        );
+  
   }
 }
 
@@ -41,6 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFA11E1E),
       appBar: AppBar(
         backgroundColor: Color(0xFFD4AF37),
         title: Text(
@@ -72,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     onPressed: () {
                       Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => ChatApp())
+                    MaterialPageRoute(builder: (context) => PageChat())
                   );
                     },
                   constraints: BoxConstraints.tightFor(
@@ -136,7 +131,7 @@ class _MyHomePageState extends State<MyHomePage> {
                onPressed: () {
                  Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Quote())
+                  MaterialPageRoute(builder: (context) => Quote(title: 'Quote Generator',))
                 );
                },
             ),
@@ -156,7 +151,7 @@ class _MyHomePageState extends State<MyHomePage> {
                onPressed: () {
                  Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Gallery())
+                  MaterialPageRoute(builder: (context) => Black(title: 'Black History',))
                 );
                },
             ),

@@ -9,9 +9,7 @@ import 'blackinfo.dart';
 import 'homepage.dart';
 import 'quotegenerator.dart';
 
-void main() {
-  runApp(new CreateStory());
-}
+
 
 class CreateStory extends StatefulWidget {
   @override
@@ -41,6 +39,8 @@ class GalleryAccessState extends State<GalleryAccess> {
 
   var _profileImage;
 
+  var text;
+
   final picker = ImagePicker();
 
   Future getImageGallery() async {
@@ -57,7 +57,7 @@ class GalleryAccessState extends State<GalleryAccess> {
 
   late File sampleImage;
   // String _myValue;
-  late String url;
+  String? url;
   final formKey = new GlobalKey<FormState>();
 
   Future getImage() async {
@@ -70,17 +70,7 @@ class GalleryAccessState extends State<GalleryAccess> {
     });
   }
 
-  bool validateAndSave() {
-    final form = formKey.currentState;
-
-    if (form!.validate() != null) {
-      form.save();
-      return true;
-    } else {
-      return false;
-    }
-  }
-
+  
   Future<void> uploadStatusImage() async {
     if (true) {
       final postImageRef = FirebaseStorage.instance.ref().child("Post Images");
@@ -94,7 +84,7 @@ class GalleryAccessState extends State<GalleryAccess> {
       var imageUrl = await imageRef.getDownloadURL();
       url = imageUrl.toString();
 
-      print("ImageUrl = " + url);
+      print("ImageUrl = " + url!);
 
       // goToHomePage();
 
@@ -138,7 +128,7 @@ class GalleryAccessState extends State<GalleryAccess> {
             ElevatedButton(
               child: Text('Select Image from Gallery'),
               onPressed: () async {
-                getImageGallery();
+                await getImageGallery();
               },
             ),
             SizedBox(
@@ -150,10 +140,11 @@ class GalleryAccessState extends State<GalleryAccess> {
                 bottom: 150,
               ),
               child: ElevatedButton(
-                child: Text('Upload Image from Gallery'),
+                child: Text('UPLOAD STORY'),
                 onPressed: () async {
+                  await uploadStatusImage();
                   await DataBase()
-                      .saveStory(imageUrl: 'link', title: 'example');
+                      .saveStory(imageUrl: url, title: text);
                 },
               ),
             ),
@@ -164,22 +155,13 @@ class GalleryAccessState extends State<GalleryAccess> {
                   border: UnderlineInputBorder(),
                   labelText: 'Type your quote:',
                 ),
+                onChanged: ((value) {
+                  setState(() {
+                    text = value;
+                  });
+                }),
               ),
             ),
-            TextButton(
-              style: TextButton.styleFrom(
-                padding: const EdgeInsets.all(16.0),
-                primary: Colors.white,
-                backgroundColor: Colors.blueAccent,
-                textStyle: const TextStyle(
-                  fontFamily: 'Finlandica',
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16.0,
-                ),
-              ),
-              onPressed: () {},
-              child: const Text('UPLOAD STORY'),
-            )
           ],
         ),
       ),
@@ -206,7 +188,7 @@ class GalleryAccessState extends State<GalleryAccess> {
                 ),
                 onPressed: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Quote()));
+                      MaterialPageRoute(builder: (context) => Quote(title: 'Quote Generator',)));
                 },
               ),
               IconButton(
@@ -228,7 +210,7 @@ class GalleryAccessState extends State<GalleryAccess> {
                 ),
                 onPressed: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Gallery()));
+                      MaterialPageRoute(builder: (context) => Black(title: 'Black History',)));
                 },
               ),
               IconButton(

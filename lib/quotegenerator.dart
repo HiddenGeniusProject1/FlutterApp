@@ -7,38 +7,20 @@ import 'quotes.dart';
 
 // ignore_for_file: prefer_const_constructors
 
-void main() {
-  runApp(const Quote());
-}
 
-class Quote extends StatelessWidget {
-  const Quote({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Quote Generator',
-      theme: ThemeData(
-        scaffoldBackgroundColor: Color(0xFFA11E1E),
-      ),
-      home: const MyHomePage(
-        title: 'Quote Generator',
-        ),
-    );
-  }
-}
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+class Quote extends StatefulWidget {
+  const Quote({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<Quote> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<Quote> {
 
    void pressedFist(){
     setState((){
@@ -49,6 +31,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFA11E1E),
       appBar: AppBar(
         backgroundColor: Color(0xFFD4AF37),
         title: Text(
@@ -144,7 +127,7 @@ class _MyHomePageState extends State<MyHomePage> {
                onPressed: () {
                  Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Quote())
+                  MaterialPageRoute(builder: (context) => Quote(title: 'Quote Generator',))
                 );
                },
             ),
@@ -164,7 +147,7 @@ class _MyHomePageState extends State<MyHomePage> {
                onPressed: () {
                  Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Gallery())
+                  MaterialPageRoute(builder: (context) => Black(title: 'Black History',))
                 );
                },
             ),

@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:inspired_finalproject/models/stories_model.dart';
 
 class MyStory2 extends StatelessWidget {
-  const MyStory2({Key? key}) : super(key: key);
+  StoryModel story;
+   MyStory2({required this.story});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: double.infinity,
       width: double.infinity,
-      decoration: const BoxDecoration(
-        image: DecorationImage(image: AssetImage('lib/images/protest.jpeg'), fit: BoxFit.cover),
+      decoration:  BoxDecoration(
+        image: DecorationImage(image: NetworkImage(story.url), fit: BoxFit.cover),
       ),
       child: Text(
-        'Huey Newton - "Black Power is giving power to people who have not had power to determine their destiny."',
+      story.text,
         textAlign: TextAlign.center,
         style: TextStyle(
           fontSize: 25.0,

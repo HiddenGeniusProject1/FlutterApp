@@ -154,10 +154,7 @@ class _RegisterNameScrnState extends State<RegisterNameScrn> {
                               errorMessage = result;
                             });
                           } else {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Home()));
+                            
                           }
                         }
                       },

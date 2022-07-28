@@ -19,7 +19,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   void _openStory() {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => StoryPage()));
+        context, MaterialPageRoute(builder: (context) => StoriesWrapper()));
   }
 
   @override
@@ -101,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
                onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Quote())
+                  MaterialPageRoute(builder: (context) => Quote(title: 'Quote Generator',))
                 );
                },
             ),
@@ -121,7 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
                onPressed: () {
                  Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Gallery())
+                  MaterialPageRoute(builder: (context) => Black(title: 'Black History',))
                 );
                },
             ),

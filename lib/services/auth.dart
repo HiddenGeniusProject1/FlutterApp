@@ -49,7 +49,7 @@ class Authentication{
     }
   }
 
-    User? get currentUser  => FirebaseAuth.instance.currentUser;
+    User? get currentUser  =>   _auth.currentUser;
    
   
  Stream<MyAppUser?> get user =>

@@ -6,26 +6,6 @@ import 'quotegenerator.dart';
 // ignore_for_file: prefer_const_constructors
 
 
-void main() {
-  runApp(Gallery());
-}
-
-class Gallery extends StatelessWidget {
-   Gallery({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Black Heroes',
-      theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white,
-      ),
-      home: const Black(
-        title: 'Black Heroes',
-        ),
-    );
-  }
-}
 
 class Black extends StatefulWidget {
   const Black({Key? key, required this.title}) : super(key: key);
@@ -129,7 +109,7 @@ class _MyHomePageState extends State<Black> {
                onPressed: () {
                  Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Quote())
+                  MaterialPageRoute(builder: (context) => Quote(title: 'Quote Generator',))
                 );
                },
             ),
@@ -149,7 +129,7 @@ class _MyHomePageState extends State<Black> {
                onPressed: () {
                  Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Gallery())
+                  MaterialPageRoute(builder: (context) => Black(title: 'Black History',))
                 );
                },
             ),

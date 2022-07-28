@@ -2,14 +2,39 @@
 
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:inspired_finalproject/models/stories_model.dart';
 import 'package:inspired_finalproject/screens/utils/story_bars.dart';
 import 'package:inspired_finalproject/stories/story_1.dart';
 import 'package:inspired_finalproject/stories/story_2.dart';
 import 'package:inspired_finalproject/stories/story_3.dart';
 import 'package:inspired_finalproject/storyscreen.dart';
 import 'like_button_widget.dart';
+import 'services/database.dart';
 
+
+class StoriesWrapper extends StatefulWidget {
+  const StoriesWrapper({Key? key}) : super(key: key);
+
+  @override
+  State<StoriesWrapper> createState() => _StoriesWrapperState();
+}
+
+class _StoriesWrapperState extends State<StoriesWrapper> {
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<List<StoryModel>>(
+          future: DataBase().getStories(),
+          builder: (context, AsyncSnapshot snapshot) {
+            List<StoryModel> stories = snapshot.data;
+            
+            return StoryPage(stories: stories,);
+            
+            });
+  }
+}
 class StoryPage extends StatefulWidget {
+  List<StoryModel> stories;
+   StoryPage({required this.stories});
   
   @override
   State<StoryPage> createState() => _StoryPageState();
@@ -18,10 +43,9 @@ class StoryPage extends StatefulWidget {
 
 class _StoryPageState extends State<StoryPage> {
   int currentStoryIndex = 0;
-  final List<Widget> myStories = [
-    MyStory1(),
-    MyStory2(),
-    MyStory3(),
+  List<Widget> myStories = [
+    
+   
   ];
 
   List<double> percentWatched = [];
@@ -29,17 +53,25 @@ class _StoryPageState extends State<StoryPage> {
   @override
   void initState() {
     super.initState();
+    
+    for (var story in widget.stories) {
+        myStories.add( MyStory2(story: story));
+      }
 
+     
+      
     for (int i = 0; i < myStories.length; i++) {
       percentWatched.add(0);
     }
-
+     
     _startWatching();
   }
 
   void _startWatching() {
+                    
     Timer.periodic(Duration(milliseconds: 50), (timer) {
       setState(() {
+       
         if (percentWatched[currentStoryIndex] + 0.01 < 1) {
           percentWatched[currentStoryIndex] += 0.01;
         } else {
@@ -72,8 +104,10 @@ class _StoryPageState extends State<StoryPage> {
       });
     } else {
       setState(() {
+        print(currentStoryIndex);
         if (currentStoryIndex < myStories.length - 1) {
           percentWatched[currentStoryIndex] = 1;
+        
           currentStoryIndex++;
         } else {
           percentWatched[currentStoryIndex] = 1;
@@ -84,85 +118,89 @@ class _StoryPageState extends State<StoryPage> {
 
   @override
   Widget build(BuildContext context) {
+   
     return GestureDetector(
       onTapDown: (details) => _ontapDown(details),
       child: Scaffold(
-        body: Stack(
-          children: <Widget>[
-            myStories[currentStoryIndex],
-            MyStoryBars(
-              percentWatched: percentWatched,
-            ),
-            Container(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 75.0),
-                  child: Align(
-                      alignment: Alignment.topRight,
-                    child: RawMaterialButton(
-                      child: const Icon (
-                        Icons.exit_to_app,
-                        color: Colors.white,
-                        size: 40.0,
-                    ),
-                    elevation: 0.0,
-                      onPressed: () {
-                        Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => HomeScreen())
-                    );
-                      },
-                    ),
-                  ),
+        body:
+          Stack(
+              children: <Widget>[
+                myStories[currentStoryIndex],
+                MyStoryBars(
+                  percentWatched: percentWatched,
                 ),
-              ),
-            SizedBox(
-              height: 8.0,
-            ),
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 100.0, bottom: 90.0, left: 15.0),
-                  child: Container(
-                    child: Icon(
-                      Icons.person,
-                      size: 48,
-                    ),
-                    height: 60,
-                    width: 60,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.white30,
-                      border: Border.all(
-                        width: 2.5,
+                Container(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 75.0),
+                      child: Align(
+                          alignment: Alignment.topRight,
+                        child: RawMaterialButton(
+                          child: const Icon (
+                            Icons.exit_to_app,
+                            color: Colors.white,
+                            size: 40.0,
+                        ),
+                        elevation: 0.0,
+                          onPressed: () {
+                            Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => HomeScreen())
+                        );
+                          },
+                        ),
                       ),
                     ),
                   ),
+                SizedBox(
+                  height: 8.0,
                 ),
-                SizedBox(width: 8.0,),
-                Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
-                  child: Text(
-                    'Justin W.',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 25.0,
-                      fontWeight: FontWeight.bold,
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 100.0, bottom: 90.0, left: 15.0),
+                      child: Container(
+                        child: Icon(
+                          Icons.person,
+                          size: 48,
+                        ),
+                        height: 60,
+                        width: 60,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.white30,
+                          border: Border.all(
+                            width: 2.5,
+                          ),
+                        ),
+                      ),
                     ),
+                    SizedBox(width: 8.0,),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0),
+                      child: Text(
+                        'Justin W.',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 25.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        ),
                     ),
+                  ],
                 ),
+                Container(
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 250.0),
+                      child: LikeButtonWidget(),
+                    ),
+                  )
+                )
               ],
-            ),
-            Container(
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 250.0),
-                  child: LikeButtonWidget(),
-                ),
-              )
-            )
-          ],
-        ),
-      ),
-    );
+            )));
+          }
+        
+      
+    
   }
-}
+
