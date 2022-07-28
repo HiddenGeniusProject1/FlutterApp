@@ -17,7 +17,10 @@ dependencies:
   firebase_auth: ^3.4.2
   percent_indicator: ^4.2.2
   like_button: ^2.0.4
-  firebase_database: ^9.0.20 
+  firebase_database: ^9.0.20
+  image_picker: ^0.8.5+3
+  firebase_storage: ^10.3.4
+  uuid: ^3.0.6
 
 dev_dependencies:
   flutter_test:

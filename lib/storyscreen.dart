@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inspired_finalproject/createstory.dart';
 import 'package:inspired_finalproject/screens/utils/story_circles.dart';
 import 'package:inspired_finalproject/storypage.dart';
 import 'accountPage.dart';
@@ -121,6 +122,16 @@ class _HomeScreenState extends State<HomeScreen> {
                  Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => Gallery())
+                );
+               },
+            ),
+            IconButton(
+              tooltip: 'Add Story',
+               icon: const Icon(Icons.add, size: 40.0,),
+               onPressed: () {
+                 Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CreateStory())
                 );
                },
             ),

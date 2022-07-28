@@ -1,23 +1,41 @@
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:inspired_finalproject/services/auth.dart';
+import 'package:uuid/uuid.dart';
 
-class DataBase{
+class DataBase {
+  final connection = FirebaseDatabase.instance.ref();
+
  
-    final connection = FirebaseDatabase.instance.ref();
-  DataBase({uid});
+  Future<void> saveStory(
+      {imageUrl, title }) async {
+   User? user = Authentication().currentUser;
 
-  Future <void> saveProfilePic ({imageUrl}) async{
-    String? user = await Authentication().currentUser!.uid;
+    String storyId = Uuid().v1();
+  
+
+   DatabaseReference productRef = await connection.child('stories').child('hill');
+    await productRef.set(
+      {
+        'userUid': user!.uid,
+        'title': title,
+        'imageUrl': imageUrl,
+      },
+    );
+    print(title + user.uid);
+  }
+
+  Future<void> saveProfilePic({imageUrl}) async {
+    User? user = await Authentication().currentUser;
 
     print('Saving Profile');
     print(user);
 
-    final profileRef = connection.child('users').child(user);
-    profileRef.set(
-      {
-        'profile_pic': imageUrl,
-      }
-    );
+    final profileRef = connection.child('users').child(user!.uid);
+    profileRef.set({
+      'profile_pic': imageUrl,
+    });
   }
+
+ 
 }

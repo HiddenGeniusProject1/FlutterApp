@@ -118,8 +118,8 @@ class SignUpForm extends StatelessWidget {
                       ),
                     ),
                     onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Log()));
+                      // Navigator.push(context,
+                      //     MaterialPageRoute(builder: (context) => Log()));
                     },
                   ),
                 ),
@@ -144,8 +144,8 @@ class SignUpForm extends StatelessWidget {
                           color: Colors.white),
                     ),
                     onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Log()));
+                      // Navigator.push(context,
+                      //     MaterialPageRoute(builder: (context) => Log()));
                     },
                   ),
                 ),

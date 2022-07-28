@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:inspired_finalproject/login.dart';
 import 'package:inspired_finalproject/quotegenerator.dart';
+import 'package:inspired_finalproject/services/auth.dart';
 import 'main.dart';
 import 'blackinfo.dart';
 import 'homepage.dart';
@@ -131,11 +132,8 @@ class AccountForm extends StatelessWidget {
                   color: Colors.white
                 ),
               ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => MyApp())
-                );
+              onPressed: () async {
+              await Authentication().logOutUser();
               },
             ),
             ),
@@ -176,12 +174,8 @@ class AccountForm extends StatelessWidget {
                   color: Colors.white
                 ),
               ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Log())
-                  );
-                },
+              onPressed: () {}
+                
               ),
             ),
           ],

@@ -6,20 +6,18 @@ import 'package:inspired_finalproject/login.dart';
 import 'package:inspired_finalproject/models/chatUsers.dart';
 import 'package:inspired_finalproject/signupPage.dart';
 class Authentication{
-  FirebaseAuth connection = FirebaseAuth.instance;
+  FirebaseAuth _auth = FirebaseAuth.instance;
 
-   Stream<User?> get authStateChanges => connection.authStateChanges();
+   Stream<User?> get authStateChanges => _auth.authStateChanges();
   //create MyAppUser from a Firebase User
   // ignore: missing_return
   MyAppUser? _userFromFirebaseUser(User? user) {
     return user != null ? MyAppUser(uid: user.uid, email: user.email, name: user.displayName,) : null;
   }
 
-  User? get currentUser => connection.currentUser!;
-
   Future<String?>createUser(String name, String email, String password) async{
     try{
-      final UserCredential credential = await connection
+      final UserCredential credential = await _auth
       .createUserWithEmailAndPassword(email: email, password: password);
       
       credential.user?.updateDisplayName(name);
@@ -33,7 +31,7 @@ class Authentication{
 
   Future<String?>loginUser(String name, String email, String password) async{
     try{
-      final UserCredential credential = await connection
+      final UserCredential credential = await _auth
       .createUserWithEmailAndPassword(email: email, password: password);
     } on FirebaseAuthException catch (error) {
       return error.message;
@@ -50,11 +48,15 @@ class Authentication{
       return null;
     }
   }
+
+    User? get currentUser  => FirebaseAuth.instance.currentUser;
+   
+  
  Stream<MyAppUser?> get user =>
-      connection.authStateChanges().map(_userFromFirebaseUser);
+      _auth.authStateChanges().map(_userFromFirebaseUser);
 
 }
-
+// AUTH SCRN
 class AuthScrn extends StatefulWidget {
   
   AuthScrn({Key? key}) : super(key: key);
@@ -74,9 +76,10 @@ class _AuthScrnState extends State<AuthScrn> {
   @override
   Widget build(BuildContext context) {
     if (isLogin) {
-      return LoginScrn(onClickedSignUp: toggle);
+      return Scaffold(body: LoginScrn(onClickedSignUp: toggle));
     } else{
-      return RegisterNameScrn(onClickedLogin: toggle);
+      return Scaffold(body: RegisterNameScrn(onClickedLogin: toggle));
     }
   }
-}
+
+  }

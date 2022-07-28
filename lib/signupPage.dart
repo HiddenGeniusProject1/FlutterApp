@@ -6,40 +6,7 @@ import 'package:firebase_core/firebase_core.dart';
 
 // ignore_for_file: prefer_const_constructors
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  runApp(Sign());
-}
 
-class Sign extends StatelessWidget {
-  Sign({key});
-
-  @override
-  Widget build(BuildContext context) {
-    const appTitle = 'Sign Up';
-    return MaterialApp(
-      title: appTitle,
-      theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white,
-      ),
-      home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Color(0xFFA11E1E),
-          title: const Text(
-            appTitle,
-            style: TextStyle(
-              fontFamily: 'Finlandica',
-              fontWeight: FontWeight.bold,
-              fontSize: 25.0,
-            ),
-          ),
-        ),
-        body: RegisterNameScrn(onClickedLogin: null,),
-      ),
-    );
-  }
-}
 
 class RegisterNameScrn extends StatefulWidget {
   final onClickedLogin;
@@ -53,7 +20,6 @@ class RegisterNameScrn extends StatefulWidget {
 class _RegisterNameScrnState extends State<RegisterNameScrn> {
   final _formKey = GlobalKey<FormState>();
 
-  String inputName = '';
   String inputEmail = '';
   String inputPassword = '';
   String errorMessage = '';
@@ -67,29 +33,6 @@ class _RegisterNameScrnState extends State<RegisterNameScrn> {
       child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Text(
-                'Name:',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 25.0,
-                ),
-              ),
-            ),
-            TextFormField(
-              onChanged: (value) {
-                setState(() {
-                  inputName = value;
-                });
-              },
-              validator: (value) {
-                if (value == null) {
-                  return 'Please enter in your name';
-                }
-              },
-            ),
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: Text(
@@ -109,7 +52,7 @@ class _RegisterNameScrnState extends State<RegisterNameScrn> {
               child: TextFormField(
                 validator: (value) {
                   if (value == null) {
-                    return 'Create Username: (Example@gmail.com)';
+                    return 'Create Email: (Example@gmail.com)';
                   }
                   return null;
                 },
@@ -120,7 +63,7 @@ class _RegisterNameScrnState extends State<RegisterNameScrn> {
                 },
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                  hintText: 'Enter Username: (Example@gmail.com)',
+                  hintText: 'Enter Email: (Example@gmail.com)',
                 ),
               ),
             ),
@@ -178,8 +121,7 @@ class _RegisterNameScrnState extends State<RegisterNameScrn> {
                             color: Colors.white),
                       ),
                       onPressed: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => MyApp()));
+                        widget.onClickedLogin();
                       },
                     ),
                   ),
@@ -205,7 +147,7 @@ class _RegisterNameScrnState extends State<RegisterNameScrn> {
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
                           final String? result =
-                              await _auth.createUser(inputName, inputEmail, inputPassword);
+                              await _auth.createUser('name', inputEmail, inputPassword);
 
                           if (result != null) {
                             setState(() {
